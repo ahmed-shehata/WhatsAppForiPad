@@ -152,7 +152,8 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
         webViewConfiguration.userContentController = contentController
         
         wkView = WKWebView(frame: .zero, configuration: webViewConfiguration)
-        
+        wkView.allowsBackForwardNavigationGestures = true
+
         status = PageState.Undefined
         statusView = Views.Both
         frst = true
@@ -285,6 +286,8 @@ class ViewController: UIViewController, WKNavigationDelegate, WKScriptMessageHan
                 UIApplication.shared.open(url)
                 decisionHandler(.cancel)
                 
+            } else {
+                decisionHandler(.allow)
             }
         } else {
             decisionHandler(.allow)
